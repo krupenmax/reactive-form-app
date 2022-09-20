@@ -3,10 +3,16 @@
     <button class="back-btn" routerLink="">Back</button>
     <form [formGroup]="registerForm" class="auth-form">
         <label class="login">Email: </label>
+        <div *ngIf="(registerForm.get('email')?.invalid && registerForm.get('email')?.touched)"
+            class="validation-message">
+            enter valid email</div>
         <input id="login" type="text" formControlName="email">
 
-        <label class="password">Username: </label>
-        <input id="password" type="text" formControlName="username">
+        <label class="username">Username: </label>
+        <div *ngIf="(registerForm.get('username')?.invalid && registerForm.get('username')?.touched)"
+            class="validation-message">
+            username must be from 6 to 64 symbols</div>
+        <input id="username" type="text" formControlName="username">
 
         <label class="password">Password:
         </label>
@@ -18,8 +24,8 @@
         <label class="password">Password confirm: </label>
         <input id="password" type="text" formControlName="passwordReenter">
 
-        <label class="password">Phone number: </label>
-        <input id="password" type="text" formControlName="phoneNum">
+        <label class="phone">Phone number: </label>
+        <input id="phone" type="text" formControlName="phoneNum">
 
         <button class="login-btn" [disabled]="!registerForm.valid">Register</button>
     </form>
