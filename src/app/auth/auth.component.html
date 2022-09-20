@@ -1,0 +1,17 @@
+<router-outlet></router-outlet>
+<div class="background">
+</div>
+<div class="auth-div">
+    <form [formGroup]="authForm" class="auth-form">
+        <label class="login">Login: </label>
+        <input id="login" type="text" formControlName="login">
+
+        <label class="password">Password: </label>
+        <input id="password" type="text" formControlName="password">
+        <button class="login-btn" [disabled]="!authForm.valid">Login</button>
+    </form>
+    <div class="register-div">
+        <button class="sign-up-btn" routerLink="register">Sign up</button>
+    </div>
+</div>
+<router-outlet></router-outlet>

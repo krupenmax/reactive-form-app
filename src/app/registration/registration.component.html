@@ -1,0 +1,26 @@
+<router-outlet></router-outlet>
+<div class="register-div">
+    <button class="back-btn" routerLink="">Back</button>
+    <form [formGroup]="registerForm" class="auth-form">
+        <label class="login">Email: </label>
+        <input id="login" type="text" formControlName="email">
+
+        <label class="password">Username: </label>
+        <input id="password" type="text" formControlName="username">
+
+        <label class="password">Password:
+        </label>
+        <div *ngIf="(!registerForm.get('password')?.invalid && registerForm.get('password')?.touched)"
+            class="validation-message">
+            password requires at least 1 number and 1 uppercase letter</div>
+        <input id="password" type="password" formControlName="password">
+
+        <label class="password">Password confirm: </label>
+        <input id="password" type="text" formControlName="passwordReenter">
+
+        <label class="password">Phone number: </label>
+        <input id="password" type="text" formControlName="phoneNum">
+
+        <button class="login-btn" [disabled]="!registerForm.valid">Register</button>
+    </form>
+</div>
