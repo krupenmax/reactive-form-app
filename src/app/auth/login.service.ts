@@ -27,7 +27,7 @@ export class LoginService {
       error: (e) => {
         alert("Неверные данные");
       },
-      complete: () => {this.isLogged = true;}
+      complete: () => {}
   })
     console.log(this.isLogged);
   }
