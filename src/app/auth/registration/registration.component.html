@@ -1,32 +1,48 @@
 <router-outlet></router-outlet>
 <div class="register-div">
     <button class="back-btn" routerLink="">Back</button>
-    <form [formGroup]="registerForm" class="auth-form">
+    <form [formGroup]="registerForm" class="auth-form" autocomplete="off">
         <label class="login">Email: </label>
         <div *ngIf="(registerForm.get('email')?.invalid && registerForm.get('email')?.touched)"
             class="validation-message">
-            enter valid email</div>
-        <input id="login" type="text" formControlName="email">
+            Enter valid email</div>
+        <input id="login" type="text" formControlName="email" placeholder="youremail@mail.com">
 
         <label class="username">Username: </label>
         <div *ngIf="(registerForm.get('username')?.invalid && registerForm.get('username')?.touched)"
             class="validation-message">
-            username must be from 6 to 64 symbols</div>
-        <input id="username" type="text" formControlName="username">
+            Username must be from 6 to 64 symbols</div>
+        <input id="username" type="text" formControlName="username" placeholder="_coolname_">
 
         <label class="password">Password:
         </label>
-        <div *ngIf="(!registerForm.get('password')?.invalid && registerForm.get('password')?.touched)"
+        <input id="password" type="password" formControlName="password" placeholder="******">
+        <div *ngIf="(registerForm.get('password')?.errors?.['invalidPassword'] && registerForm.get('password')?.touched)"
             class="validation-message">
-            password requires at least 1 number and 1 uppercase letter</div>
-        <input id="password" type="password" formControlName="password">
+            Password requires at least 1 number and 1 uppercase letter
+        </div>
 
         <label class="password">Password confirm: </label>
-        <input id="password" type="text" formControlName="passwordReenter">
+        <input id="passwordReenter" type="text" formControlName="passwordReenter" placeholder="******">
+        <div *ngIf="isValidPassword() && registerForm.get('password')?.touched && registerForm.get('passwordReenter')?.touched"
+            class="validation-message">
+            Passwords are not the same
+        </div>
+        <label class="phone">Phone number(optional): </label>
+        <input id="phone" type="text" formControlName="phoneNum" placeholder="+375000000000">
+        <div *ngIf="registerForm.get('phoneNum')?.errors?.['invalidInput'] && registerForm.get('phoneNum')?.value != '+' && registerForm.get('phoneNum')?.value != ''"
+            class="validation-message">
+            Number should not contain any characters
+        </div>
+        <div *ngIf="registerForm.get('phoneNum')?.errors?.['invalidFormat'] && registerForm.get('phoneNum')?.value != ''"
+            class="validation-message">
+            Number should contain '+' at first place
+        </div>
+        <div *ngIf="(registerForm.get('phoneNum')?.errors?.['minlength'] || registerForm.get('phoneNum')?.errors?.['maxlength']) && registerForm.get('phoneNum')?.value != '' && registerForm.get('phoneNum')?.value != '+'"
+            class="validation-message">
+            Number should be between 9 and 15 characters
+        </div>
 
-        <label class="phone">Phone number: </label>
-        <input id="phone" type="text" formControlName="phoneNum">
-
-        <button class="login-btn" [disabled]="!registerForm.valid">Register</button>
+        <button class="register-btn" [disabled]="registerForm.valid" (click)="changePhoneNum()">Register</button>
     </form>
 </div>
