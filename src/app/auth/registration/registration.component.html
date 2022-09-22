@@ -12,8 +12,8 @@
         <label class="username">Username: </label>
         <input id="username" type="text" formControlName="username" placeholder="_coolname_">
         <div *ngIf="(registerForm.get('username')?.invalid && registerForm.get('username')?.touched)"
-        class="validation-message">
-        Username must be from 6 to 64 symbols</div>
+            class="validation-message">
+            Username must be from 6 to 64 symbols</div>
 
         <label class="password">Password:
         </label>
@@ -44,6 +44,6 @@
             Number should be between 9 and 15 characters
         </div>
 
-        <button class="register-btn" [disabled]="registerForm.valid" (click)="changePhoneNum()">Register</button>
+        <button class="register-btn" [disabled]="registerForm.valid" (click)="register()">Register</button>
     </form>
 </div>

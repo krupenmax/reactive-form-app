@@ -1,4 +1,4 @@
-export type UserInfo = [
+export type UserInfo = {
     id: string,
     username: string,
     email: string,
@@ -7,4 +7,4 @@ export type UserInfo = [
     gender: string,
     image: string,
     token: string,
-]
+}

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserInfo } from 'src/app/user-info';
+import { DataService } from '../data.service';
 import { LoginService } from '../login.service';
+import { registerInfo } from '../register-info';
 
 @Component({
   selector: 'app-main',
@@ -9,10 +11,10 @@ import { LoginService } from '../login.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent  {
-  constructor(private loginService: LoginService) {
-    this.myObservable = this.loginService.myObservable;
-   }
-  public myObservable: Observable<UserInfo>;
-
-
+  public user: Observable<UserInfo>;
+  public newUser: Observable<registerInfo>;
+  constructor(private loginService: LoginService, private dataService: DataService) {
+    this.user = this.dataService.myObservable;
+    this.newUser = this.dataService.registerObservable;
+  }
 }

@@ -1,3 +1,29 @@
-<div *ngIf="myObservable | async as user">
-        
+<div *ngIf="user | async as userInfo" class="table">
+    <div class="userData">
+        <div>email:</div>
+        <div>firstName:</div>
+        <div>gender:</div>
+        <div>id:</div>
+        <div>lastName:</div>
+        <div>username:</div>
+    </div>
+    <div class="userData">
+        <div>{{userInfo.email}}</div>
+        <div>{{userInfo.firstName}}</div>
+        <div>{{userInfo.gender}}</div>
+        <div>{{userInfo.id}}</div>
+        <div>{{userInfo.lastName}}</div>
+        <div>{{userInfo.username}}</div>
+    </div>
+</div>
+
+<div *ngIf="newUser | async as registerInfo" class="table">
+    <div class="userData">
+        <div>email:</div>
+        <div>username:</div>
+    </div>
+    <div class="userData">
+        <div>{{registerInfo.email}}</div>
+        <div>{{registerInfo.username}}</div>
+    </div>
 </div>

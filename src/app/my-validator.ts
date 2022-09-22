@@ -17,7 +17,6 @@ export function validatePassword(control: AbstractControl) {
 }
 
 export function validatePlus(control: AbstractControl) {
-  console.log(control.value[0] != '+');
   if (control.value[0] != '+') {
     return { invalidFormat: true };
   }
@@ -31,7 +30,6 @@ export function validatePhoneNum(control: AbstractControl) {
   for (let i: number = 1; i < control.value.length; i++) {
     tmp += control.value[i];
   }
-  console.log(/^[0-9]+$/.test(tmp));
   if (/^[0-9]+$/.test(tmp)) {
     return { invalidInput: false };
   }

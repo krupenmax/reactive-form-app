@@ -7,15 +7,15 @@ import { LoginService } from './login.service';
   providedIn: 'root'
 })
 export class LoginGuard implements CanActivate {
+  public isLogged = false;
+  constructor(private loginService: LoginService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.loginService.isLogged === false) {
+      if (this.isLogged === false) {
         this.router.navigateByUrl('');
       }
-      return this.loginService.isLogged;
+      return this.isLogged;
   }
 
-  constructor(private loginService: LoginService, private router: Router) {}
-  
 }

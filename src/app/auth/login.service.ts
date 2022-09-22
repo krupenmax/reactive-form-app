@@ -15,20 +15,10 @@ export class LoginService {
     this.isLogged = false;
    }
 
-  public login(username: string | null | undefined, password: string | null | undefined): void {
+  public login(username: string | null | undefined, password: string | null | undefined): Observable<UserInfo> {
     let user: User = { 
       username: username,
       password: password };
-    this.myObservable = this.http.post<UserInfo>('/auth/login', user);
-    this.myObservable.subscribe({
-      next: (v) => {
-        this.isLogged = true;
-        this.router.navigateByUrl('main');
-      },  
-      error: (e) => {
-        alert("Invalid login or password");
-      },
-      complete: () => {}
-  })
+    return this.http.post<UserInfo>('/auth/login', user);
   }
 }
