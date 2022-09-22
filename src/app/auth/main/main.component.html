@@ -1,4 +1,4 @@
-<div *ngIf="user | async as userInfo" class="table">
+<div *ngIf="userInfo" class="table">
     <div class="userData">
         <div>email:</div>
         <div>firstName:</div>
@@ -17,13 +17,13 @@
     </div>
 </div>
 
-<div *ngIf="newUser | async as registerInfo" class="table">
+<div *ngIf="registerUser" class="table">
     <div class="userData">
         <div>email:</div>
         <div>username:</div>
     </div>
     <div class="userData">
-        <div>{{registerInfo.email}}</div>
-        <div>{{registerInfo.username}}</div>
+        <div>{{registerUser.email}}</div>
+        <div>{{registerUser.username}}</div>
     </div>
 </div>

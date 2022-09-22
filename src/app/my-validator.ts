@@ -1,4 +1,4 @@
-import { AbstractControl, ControlContainer } from '@angular/forms';
+import { AbstractControl, ControlContainer, FormControl } from "@angular/forms";
 
 export function validatePassword(control: AbstractControl) {
   let hasUpperCases = false;
@@ -8,20 +8,19 @@ export function validatePassword(control: AbstractControl) {
     }
   }
   if (/\d/.test(control.value) && hasUpperCases === true) {
-    return { invalidPassword: false };
+    return null;
   }
-  else
-  {
+  else {
     return { invalidPassword: true };
   }
 }
 
 export function validatePlus(control: AbstractControl) {
-  if (control.value[0] != '+') {
-    return { invalidFormat: true };
+  if (control.value[0] === "+" || control.value === "") {
+    return null;
   }
   else {
-    return { invalidFormat: false };
+    return { invalidFormat: true };
   }
 }
 
@@ -30,10 +29,15 @@ export function validatePhoneNum(control: AbstractControl) {
   for (let i: number = 1; i < control.value.length; i++) {
     tmp += control.value[i];
   }
-  if (/^[0-9]+$/.test(tmp)) {
-    return { invalidInput: false };
+  if (/^[0-9]+$/.test(tmp) || tmp === "") {
+    return null;
   }
   else {
-    return { invalidInput: true};
+    return { invalidInput: true };
   }
+}
+
+export function validateSimilarity(control: AbstractControl) {
+  control: AbstractControl;
+  return control.value === control.parent?.get("password")?.value ? null: { invalidSimilarity: true };
 }

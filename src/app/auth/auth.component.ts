@@ -1,40 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginService } from './login.service';
-import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { Route, Router } from '@angular/router';
-import { LoginGuard } from './login.guard';
-import { DataService } from './data.service';
-import { map } from 'rxjs';
-
+import { ChangeDetectionStrategy } from "@angular/core";
+import { Component } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { DataService } from "./data.service";
+import { LoginService } from "./login.service";
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss'],
-  providers: [LoginService],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [],
+  selector: "app-auth",
+  styleUrls: ["./auth.component.scss"],
+  templateUrl: "./auth.component.html",
 })
+
 export class AuthComponent {
-  authForm = new FormGroup({
-    login: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-  })
-  
-  constructor(private loginService: LoginService, private cdr: ChangeDetectorRef, private router: Router, private guard: LoginGuard, private dataService: DataService) { }
+  public authForm = new FormGroup({
+    login: new FormControl("", Validators.required),
+    password: new FormControl("", Validators.required),
+  });
+
+  public constructor(private loginService: LoginService, private router: Router, private dataService: DataService) { }
 
   public login(username: string | null | undefined, password: string | null | undefined) {
-    this.dataService.myObservable = this.loginService.login(username, password);
-    let check = "";
-    this.dataService.myObservable.subscribe({
-      next: () => {
-        this.guard.isLogged = true;
-        this.router.navigateByUrl('main');
-      },  
+    this.loginService.login(username, password).subscribe({
       error: () => {
         alert("Invalid login or password");
       },
-      complete: () => {}
+      next: (data) => {
+        this.dataService.userInfo = {
+          email: data.email,
+          firstName: data.firstName,
+          gender: data.gender,
+          id: data.id,
+          image: data.image,
+          lastName: data.lastName,
+          token: data.token,
+          username: data.username,
+        };
+        this.router.navigateByUrl("main");
+      },
     });
   }
 

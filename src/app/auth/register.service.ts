@@ -1,20 +1,20 @@
-import { Injectable } from '@angular/core';
-import { registerInfo } from './register-info';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { Observable } from "rxjs";
+import { registerInfo } from "./register-info";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class RegisterService {
   public myObservable: Observable<registerInfo> = new Observable();
-  public isLogged: boolean;
-  constructor(private http: HttpClient, private router: Router) {
-    this.isLogged = false;
-   }
+  public isLogged: boolean = false;
+  public constructor(private http: HttpClient, private router: Router) {
+  }
 
   public register(body: registerInfo): Observable<registerInfo> {
-    return this.http.post<registerInfo>('/users/add', body);
+    this.isLogged = true;
+    return this.http.post<registerInfo>("/users/add", body);
   }
 }

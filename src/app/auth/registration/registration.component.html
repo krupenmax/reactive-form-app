@@ -1,4 +1,3 @@
-<router-outlet></router-outlet>
 <div class="register-div">
     <button class="back-btn" routerLink="">Back</button>
     <form [formGroup]="registerForm" class="auth-form" autocomplete="off">
@@ -22,28 +21,32 @@
             class="validation-message">
             Password requires at least 1 number and 1 uppercase letter
         </div>
+        <div *ngIf="((registerForm.get('password')?.errors?.['minlength'] || registerForm.get('password')?.errors?.['maxlength']) && registerForm.get('password')?.touched)"
+            class="validation-message">
+            Password should be between 8 and 64 symbols
+        </div>
 
         <label class="password">Password confirm: </label>
         <input id="passwordReenter" type="password" formControlName="passwordReenter" placeholder="******">
-        <div *ngIf="isValidPassword() && registerForm.get('password')?.touched && registerForm.get('passwordReenter')?.touched"
+        <div *ngIf="registerForm.get('passwordReenter')?.errors?.['invalidSimilarity'] && registerForm.get('passwordReenter')?.touched"
             class="validation-message">
             Passwords are not the same
         </div>
         <label class="phone">Phone number(optional): </label>
         <input id="phone" type="text" formControlName="phoneNum" placeholder="+375000000000">
-        <div *ngIf="registerForm.get('phoneNum')?.errors?.['invalidInput'] && registerForm.get('phoneNum')?.value != '+' && registerForm.get('phoneNum')?.value != ''"
+        <div *ngIf="registerForm.get('phoneNum')?.errors?.['invalidInput'] && registerForm.get('phoneNum')?.value !== '+' && registerForm.get('phoneNum')?.value !== ''"
             class="validation-message">
             Number should not contain any characters
         </div>
-        <div *ngIf="registerForm.get('phoneNum')?.errors?.['invalidFormat'] && registerForm.get('phoneNum')?.value != ''"
+        <div *ngIf="registerForm.get('phoneNum')?.errors?.['invalidFormat'] && registerForm.get('phoneNum')?.value !== ''"
             class="validation-message">
-            Number should contain '+' at first place
+            Number should contain '+' at the first place
         </div>
-        <div *ngIf="(registerForm.get('phoneNum')?.errors?.['minlength'] || registerForm.get('phoneNum')?.errors?.['maxlength']) && registerForm.get('phoneNum')?.value != '' && registerForm.get('phoneNum')?.value != '+'"
+        <div *ngIf="(registerForm.get('phoneNum')?.errors?.['minlength'] || registerForm.get('phoneNum')?.errors?.['maxlength']) && registerForm.get('phoneNum')?.value !== '' && registerForm.get('phoneNum')?.value !== '+'"
             class="validation-message">
             Number should be between 9 and 15 characters
         </div>
 
-        <button class="register-btn" [disabled]="registerForm.valid" (click)="register()">Register</button>
+        <button class="register-btn" [disabled]="registerForm.invalid" (click)=" register()">Register</button>
     </form>
 </div>
