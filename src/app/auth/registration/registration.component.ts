@@ -47,7 +47,9 @@ export class RegistrationComponent implements OnInit {
     };
     console.log(body.phoneNum);
     this.registerService.register(body).subscribe({
-      error: () => {},
+      error: (data) => {
+        alert(data.error.message);
+      },
       next: (data) => {
         this.dataService.registerUser = {
           email: data.email,

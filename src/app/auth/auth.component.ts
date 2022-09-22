@@ -23,8 +23,8 @@ export class AuthComponent {
 
   public login(username: string | null | undefined, password: string | null | undefined) {
     this.loginService.login(username, password).subscribe({
-      error: () => {
-        alert("Invalid login or password");
+      error: (data) => {
+        alert(data.error.message);
       },
       next: (data) => {
         this.dataService.userInfo = {
