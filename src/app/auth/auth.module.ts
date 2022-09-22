@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginService } from './login.service';
-import { MainComponent } from './main/main.component';
+import { MainComponent } from '../main/main.component';
 
 
 @NgModule({

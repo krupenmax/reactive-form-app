@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserInfo } from 'src/app/user-info';
-import { DataService } from '../data.service';
-import { LoginService } from '../login.service';
-import { registerInfo } from '../register-info';
+import { DataService } from '../auth/data.service';
+import { LoginService } from '../auth/login.service';
+import { registerInfo } from '../auth/register-info';
 
 @Component({
   selector: 'app-main',
