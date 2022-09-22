@@ -10,8 +10,9 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
   public myObservable: Observable<UserInfo> = new Observable();
-  public isLogged: boolean = false;
+  public isLogged: boolean;
   constructor(private http: HttpClient, private router: Router) {
+    this.isLogged = false;
    }
 
   public login(username: string | null | undefined, password: string | null | undefined): void {
@@ -25,14 +26,9 @@ export class LoginService {
         this.router.navigateByUrl('main');
       },  
       error: (e) => {
-        alert("Неверные данные");
+        alert("Invalid login or password");
       },
       complete: () => {}
   })
-    console.log(this.isLogged);
-  }
-
-  public isLoggedFunc(): boolean {
-    return this.isLogged;
   }
 }

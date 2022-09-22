@@ -3,16 +3,17 @@
     <button class="back-btn" routerLink="">Back</button>
     <form [formGroup]="registerForm" class="auth-form" autocomplete="off">
         <label class="login">Email: </label>
+        <input id="login" type="text" formControlName="email" placeholder="youremail@mail.com">
         <div *ngIf="(registerForm.get('email')?.invalid && registerForm.get('email')?.touched)"
             class="validation-message">
-            Enter valid email</div>
-        <input id="login" type="text" formControlName="email" placeholder="youremail@mail.com">
+            Enter valid email
+        </div>
 
         <label class="username">Username: </label>
-        <div *ngIf="(registerForm.get('username')?.invalid && registerForm.get('username')?.touched)"
-            class="validation-message">
-            Username must be from 6 to 64 symbols</div>
         <input id="username" type="text" formControlName="username" placeholder="_coolname_">
+        <div *ngIf="(registerForm.get('username')?.invalid && registerForm.get('username')?.touched)"
+        class="validation-message">
+        Username must be from 6 to 64 symbols</div>
 
         <label class="password">Password:
         </label>
@@ -23,7 +24,7 @@
         </div>
 
         <label class="password">Password confirm: </label>
-        <input id="passwordReenter" type="text" formControlName="passwordReenter" placeholder="******">
+        <input id="passwordReenter" type="password" formControlName="passwordReenter" placeholder="******">
         <div *ngIf="isValidPassword() && registerForm.get('password')?.touched && registerForm.get('passwordReenter')?.touched"
             class="validation-message">
             Passwords are not the same

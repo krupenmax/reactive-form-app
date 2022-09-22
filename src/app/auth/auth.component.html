@@ -2,18 +2,16 @@
 <div class="auth-div">
     <form [formGroup]="authForm" class="auth-form" autocomplete="off">
         <label class="login">Login: </label>
-        <input id="login" type="text" formControlName="login">
+        <input id="login" type="text" formControlName="login" autocomplete="off" placeholder="Login">
         <div *ngIf="authForm.get('login')?.errors?.['required'] && authForm.get('login')?.touched"
             class="validation-message">Enter login</div>
         <label class="password">Password: </label>
-        <input id="password" type="password" formControlName="password">
+        <input id="password" type="password" formControlName="password" autocomplete="off" placeholder="******">
         <div *ngIf="authForm.get('password')?.errors?.['required'] && authForm.get('password')?.touched"
             class="validation-message">Enter password</div>
         <button class="login-btn" [disabled]="!authForm.valid"
             (click)="login(authForm.get('login')?.value, authForm.get('password')?.value)">Login</button>
-    </form>
-    <div class="register-div">
         <button class="sign-up-btn" routerLink="register">Sign up</button>
-    </div>
+    </form>
 </div>
 <router-outlet></router-outlet>
