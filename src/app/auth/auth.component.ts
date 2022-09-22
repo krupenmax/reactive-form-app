@@ -27,11 +27,11 @@ export class AuthComponent {
     this.dataService.myObservable = this.loginService.login(username, password);
     let check = "";
     this.dataService.myObservable.subscribe({
-      next: (v) => {
+      next: () => {
         this.guard.isLogged = true;
         this.router.navigateByUrl('main');
       },  
-      error: (e) => {
+      error: () => {
         alert("Invalid login or password");
       },
       complete: () => {}

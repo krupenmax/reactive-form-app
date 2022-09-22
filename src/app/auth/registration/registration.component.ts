@@ -50,11 +50,10 @@ export class RegistrationComponent implements OnInit {
     this.dataService.registerObservable = this.registerService.register(body);
     this.dataService.registerObservable.subscribe({
       next: (v) => {
-        console.log(v.email);
         this.guard.isLogged = true;
         this.router.navigateByUrl('main');
       },  
-      error: (e) => {},
+      error: () => {},
       complete: () => {}
     });
     this.cdr.detectChanges();
