@@ -9,7 +9,7 @@
         <div *ngIf="authForm.get('password')?.errors?.['required'] && authForm.get('password')?.touched"
             class="validation-message">Enter password</div>
         <button class="login-btn"
-            (click)="login(authForm.get('login')?.value, authForm.get('password')?.value)">Login</button>
+            (click)="login()">Login</button>
         <button class="sign-up-btn" routerLink="register">Sign up</button>
     </form>
 </div>  

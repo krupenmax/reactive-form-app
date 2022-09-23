@@ -4,14 +4,5 @@
         "secure": false,
         "changeOrigin": true,
         "logLevel": "debug"
-    },
-    "/users/": {
-        "target": "https://dummyjson.com/",
-        "secure": false,
-        "changeOrigin": true,
-        "pathRewrite": {
-            "^/api": ""
-        },
-        "logLevel": "debug"
     }
 }

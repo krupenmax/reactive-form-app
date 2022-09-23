@@ -12,6 +12,6 @@ import { registerInfo } from "../register-info";
 export class MainComponent  {
   public userInfo?: UserInfo = this.dataService.userInfo;
   public registerUser?: registerInfo = this.dataService.registerUser;
-  public constructor(private loginService: LoginService, private dataService: DataService) {
+  public constructor(private dataService: DataService) {
   }
 }

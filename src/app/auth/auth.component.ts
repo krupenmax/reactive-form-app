@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, OnDestroy } from "@angular/core";
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Subject, takeUntil } from "rxjs";
+import { UserInfo } from "../user-info";
 import { DataService } from "./data.service";
 import { LoginService } from "./login.service";
 
@@ -13,38 +15,45 @@ import { LoginService } from "./login.service";
   templateUrl: "./auth.component.html",
 })
 
-export class AuthComponent {
+export class AuthComponent implements OnDestroy{
   public authForm = new FormGroup({
     login: new FormControl("", Validators.required),
     password: new FormControl("", Validators.required),
   });
+  public unsubscribe$: Subject<void> = new Subject();
 
   public constructor(private loginService: LoginService, private router: Router, private dataService: DataService) { }
 
-  public login(username: string | null | undefined, password: string | null | undefined) {
+  public login() {
     if (this.authForm.invalid) {
       this.authForm.markAllAsTouched();
     }
-    this.loginService.login(username, password).subscribe({
-      error: (data) => {
-        alert(data.error.message);
-      },
-      next: (data) => {
-        this.loginService.isLogged = true;
-        this.dataService.userInfo = {
-          email: data.email,
-          firstName: data.firstName,
-          gender: data.gender,
-          id: data.id,
-          image: data.image,
-          lastName: data.lastName,
-          token: data.token,
-          username: data.username,
-        };
-        this.router.navigateByUrl("main");
-      },
-    });
+    else {
+      this.loginService.login(this.authForm.controls["login"].value, this.authForm.controls["password"].value).pipe(takeUntil(this.unsubscribe$)).subscribe({
+        error: (data) => {
+          alert(data.error.message);
+        },
+        next: (data) => {
+          this.loginService.isLogged = true;
+          this.dataService.userInfo = {
+            email: data.email,
+            firstName: data.firstName,
+            gender: data.gender,
+            id: data.id,
+            image: data.image,
+            lastName: data.lastName,
+            token: data.token,
+            username: data.username,
+          };
+          this.router.navigateByUrl("main");
+        },
+      });
+    }
   }
 
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 
 }

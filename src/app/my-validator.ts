@@ -1,18 +1,26 @@
 import { AbstractControl, ControlContainer, FormControl } from "@angular/forms";
 
-export function validatePassword(control: AbstractControl) {
-  let hasUpperCases = false;
-  for (let i = 0; i < control.value.length; i++) {
-    if (control.value[i].toUpperCase() === control.value[i] && control.value[i].match(/[a-z]/i)) {
-      hasUpperCases = true;
-    }
-  }
-  if (/\d/.test(control.value) && hasUpperCases === true) {
+export function validatePasswordNum(control: AbstractControl) {
+  // for (let i = 0; i < control.value.length; i++) {
+  //   if (control.value[i].toUpperCase() === control.value[i] && control.value[i].match(/[a-z]/i)) {
+  //     hasUpperCases = true;
+  //   }
+  // }
+  if (/\d/.test(control.value)) {
     return null;
   }
   else {
     return { invalidPassword: true };
   }
+}
+
+export function validatePasswordUppercase(control: AbstractControl) {
+  for (let i = 0; i < control.value.length; i++) {
+    if (control.value[i].toUpperCase() === control.value[i] && control.value[i].match(/[a-z]/i)) {
+      return null;
+    }
+  }
+  return { invalidPasswordUpperCase: true };
 }
 
 export function validatePlus(control: AbstractControl) {
@@ -38,6 +46,9 @@ export function validatePhoneNum(control: AbstractControl) {
 }
 
 export function validateSimilarity(control: AbstractControl) {
-  control: AbstractControl;
   return control.value === control.parent?.get("password")?.value ? null: { invalidSimilarity: true };
+}
+
+export function validateSimilarityMain(control: AbstractControl) {
+  return control.value === control.parent?.get("passwordReenter")?.value ? null: { invalidSimilarityMain: true };
 }
