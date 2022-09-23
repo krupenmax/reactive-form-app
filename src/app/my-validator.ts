@@ -46,9 +46,9 @@ export function validatePhoneNum(control: AbstractControl) {
 }
 
 export function validateSimilarity(control: AbstractControl) {
-  return control.value === control.parent?.get("password")?.value ? null: { invalidSimilarity: true };
+  return control.value === control.parent?.get("password")?.value ||  control.parent?.get("password")?.value === "" ? null: { invalidSimilarity: true };
 }
 
 export function validateSimilarityMain(control: AbstractControl) {
-  return control.value === control.parent?.get("passwordReenter")?.value ? null: { invalidSimilarityMain: true };
+  return control.value === control.parent?.get("passwordReenter")?.value || control.parent?.get("passwordReenter")?.value === "" ? null: { invalidSimilarityMain: true };
 }

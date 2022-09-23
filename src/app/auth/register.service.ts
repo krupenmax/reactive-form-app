@@ -13,6 +13,6 @@ export class RegisterService {
   }
 
   public register(body: registerInfo): Observable<registerInfo> {
-    return this.http.post<registerInfo>("/users/add", body);
+    return this.http.post<registerInfo>("/api/users/add", body);
   }
 }

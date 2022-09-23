@@ -18,6 +18,6 @@ export class LoginService {
       password: password,
       username: username,
     };
-    return this.http.post<UserInfo>("/auth/login", user);
+    return this.http.post<UserInfo>("/api/auth/login", user);
   }
 }

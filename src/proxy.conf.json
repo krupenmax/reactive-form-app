@@ -1,8 +1,11 @@
 {
-    "/auth/": {
+    "/api": {
         "target": "https://dummyjson.com/",
         "secure": false,
         "changeOrigin": true,
-        "logLevel": "debug"
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/api": ""
+        }
     }
 }
