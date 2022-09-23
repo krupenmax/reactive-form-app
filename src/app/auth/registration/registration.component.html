@@ -42,9 +42,13 @@
             class="validation-message">
             Required field
         </div>
-        <div *ngIf="((registerForm.get('password')?.errors?.['minlength'] || registerForm.get('password')?.errors?.['maxlength'] && registerForm.get('password')?.touched)
+        <div *ngIf="((registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.touched)
          && !registerForm.get('password')?.errors?.['required'])" class="validation-message">
-            Password should be between 8 and 64 symbols
+            Password must contain more than 7 characters
+        </div>
+        <div *ngIf="((registerForm.get('password')?.errors?.['maxlength'] && registerForm.get('password')?.touched)
+         && !registerForm.get('password')?.errors?.['required'])" class="validation-message">
+            Password must contain less than 65 characters
         </div>
 
         <label class="password">Password confirm: </label>
