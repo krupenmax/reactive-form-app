@@ -14,7 +14,7 @@ import { RegisterService } from "../register.service";
   templateUrl: "./registration.component.html",
 })
 
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
   public constructor(private dataService: DataService, private registerService: RegisterService, private router: Router) {
   }
 
@@ -37,7 +37,6 @@ export class RegistrationComponent implements OnInit {
         phoneNum: this.registerForm.controls["phoneNum"].value,
         username: this.registerForm.controls["username"].value,
       };
-      console.log(body.phoneNum);
       this.registerService.register(body).subscribe({
         error: (data) => {
           alert(data.error.message);
@@ -54,9 +53,5 @@ export class RegistrationComponent implements OnInit {
         },
       });
     }
-  }
-
-  public ngOnInit(): void {
-    this.registerForm.valueChanges.subscribe();
   }
 }
