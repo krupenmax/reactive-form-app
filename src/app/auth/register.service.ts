@@ -8,13 +8,11 @@ import { registerInfo } from "./register-info";
   providedIn: "root",
 })
 export class RegisterService {
-  public myObservable: Observable<registerInfo> = new Observable();
   public isLogged: boolean = false;
   public constructor(private http: HttpClient, private router: Router) {
   }
 
   public register(body: registerInfo): Observable<registerInfo> {
-    this.isLogged = true;
     return this.http.post<registerInfo>("/users/add", body);
   }
 }

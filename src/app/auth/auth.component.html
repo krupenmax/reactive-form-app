@@ -1,4 +1,3 @@
-<router-outlet></router-outlet>
 <div class="auth-div">
     <form [formGroup]="authForm" class="auth-form" autocomplete="off">
         <label class="login">Login: </label>
@@ -9,8 +8,8 @@
         <input id="password" type="password" formControlName="password" autocomplete="off" placeholder="******">
         <div *ngIf="authForm.get('password')?.errors?.['required'] && authForm.get('password')?.touched"
             class="validation-message">Enter password</div>
-        <button class="login-btn" [disabled]="!authForm.valid"
+        <button class="login-btn"
             (click)="login(authForm.get('login')?.value, authForm.get('password')?.value)">Login</button>
         <button class="sign-up-btn" routerLink="register">Sign up</button>
     </form>
-</div>
+</div>  

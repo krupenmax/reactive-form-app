@@ -9,7 +9,6 @@ import { UserInfo } from "../user-info";
   providedIn: "root",
 })
 export class LoginService {
-  public myObservable: Observable<UserInfo> = new Observable();
   public isLogged: boolean = false;
   public constructor(private http: HttpClient, private router: Router) {
   }
@@ -19,7 +18,6 @@ export class LoginService {
       password: password,
       username: username,
     };
-    this.isLogged = true;
     return this.http.post<UserInfo>("/auth/login", user);
   }
 }

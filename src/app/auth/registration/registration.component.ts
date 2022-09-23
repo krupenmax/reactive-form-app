@@ -39,27 +39,33 @@ export class RegistrationComponent implements OnInit {
   }
 
   public register(): void {
-    let body: registerInfo = {
-      email: this.registerForm.controls["email"].value,
-      password: this.registerForm.controls["password"].value,
-      phoneNum: this.registerForm.controls["phoneNum"].value,
-      username: this.registerForm.controls["username"].value,
-    };
-    console.log(body.phoneNum);
-    this.registerService.register(body).subscribe({
-      error: (data) => {
-        alert(data.error.message);
-      },
-      next: (data) => {
-        this.dataService.registerUser = {
-          email: data.email,
-          password: data.password,
-          phoneNum: data.phoneNum,
-          username: data.username,
-        };
-        this.router.navigateByUrl("main");
-      },
-    });
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+    }
+    else {
+      let body: registerInfo = {
+        email: this.registerForm.controls["email"].value,
+        password: this.registerForm.controls["password"].value,
+        phoneNum: this.registerForm.controls["phoneNum"].value,
+        username: this.registerForm.controls["username"].value,
+      };
+      console.log(body.phoneNum);
+      this.registerService.register(body).subscribe({
+        error: (data) => {
+          alert(data.error.message);
+        },
+        next: (data) => {
+          this.registerService.isLogged = true;
+          this.dataService.registerUser = {
+            email: data.email,
+            password: data.password,
+            phoneNum: data.phoneNum,
+            username: data.username,
+          };
+          this.router.navigateByUrl("main");
+        },
+      });
+    }
   }
 
   public ngOnInit(): void {

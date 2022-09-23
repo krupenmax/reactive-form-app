@@ -22,11 +22,15 @@ export class AuthComponent {
   public constructor(private loginService: LoginService, private router: Router, private dataService: DataService) { }
 
   public login(username: string | null | undefined, password: string | null | undefined) {
+    if (this.authForm.invalid) {
+      this.authForm.markAllAsTouched();
+    }
     this.loginService.login(username, password).subscribe({
       error: (data) => {
         alert(data.error.message);
       },
       next: (data) => {
+        this.loginService.isLogged = true;
         this.dataService.userInfo = {
           email: data.email,
           firstName: data.firstName,
