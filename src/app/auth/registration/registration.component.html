@@ -53,7 +53,7 @@
 
         <label class="password">Password confirm: </label>
         <input id="passwordReenter" type="password" formControlName="passwordReenter" placeholder="******">
-        <div *ngIf="registerForm.get('password')?.value !== registerForm.get('passwordReenter')?.value && registerForm.get('passwordReenter')?.touched"
+        <div *ngIf="registerForm?.errors?.['invalidSimilarity'] && registerForm.get('passwordReenter')?.touched"
             class="validation-message">
             Passwords are not the same
         </div>

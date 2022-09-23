@@ -1,4 +1,4 @@
-import { AbstractControl, ControlContainer, FormControl } from "@angular/forms";
+import { AbstractControl, AbstractFormGroupDirective, ControlContainer, FormControl, FormGroup, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 export function validatePasswordNum(control: AbstractControl) {
   // for (let i = 0; i < control.value.length; i++) {
@@ -45,10 +45,9 @@ export function validatePhoneNum(control: AbstractControl) {
   }
 }
 
-export function validateSimilarity(control: AbstractControl) {
-  return control.value === control.parent?.get("password")?.value && control.value === control.parent?.get("passwordReenter")?.value ? null: { invalidSimilarity: true };
-}
-
-export function validateSimilarityMain(control: AbstractControl) {
-  return control.value === control.parent?.get("passwordReenter")?.value ? null: { invalidSimilarity: true };
-}
+export const validateSimilarity: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  const password = control.get("password");
+  const passwordReenter = control.get("passwordReenter");
+  console.log(password);
+  return password?.value === passwordReenter?.value ? null : { invalidSimilarity: true };
+};

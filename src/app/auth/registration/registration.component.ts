@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { validatePasswordNum, validatePasswordUppercase, validatePhoneNum, validatePlus, validateSimilarity, validateSimilarityMain } from "../../my-validator";
+import { validatePasswordNum, validatePasswordUppercase, validatePhoneNum, validatePlus, validateSimilarity } from "../../my-validator";
 import { DataService } from "../data.service";
 import { registerInfo } from "../register-info";
 import { RegisterService } from "../register.service";
@@ -24,7 +24,7 @@ export class RegistrationComponent {
     passwordReenter: new FormControl("", [Validators.required]),
     phoneNum: new FormControl("", [validatePhoneNum, validatePlus, Validators.minLength(10), Validators.maxLength(16)]),
     username: new FormControl("", [Validators.minLength(6), Validators.maxLength(64), Validators.required]),
-  });
+  }, { validators: validateSimilarity });
 
   public register(): void {
     if (this.registerForm.invalid) {
