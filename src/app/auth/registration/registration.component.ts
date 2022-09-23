@@ -20,7 +20,7 @@ export class RegistrationComponent {
 
   public registerForm = new FormGroup({
     email: new FormControl("", [Validators.email, Validators.required]),
-    password: new FormControl("", [Validators.required, validatePasswordNum, Validators.minLength(8), Validators.maxLength(64), validateSimilarityMain, validatePasswordUppercase]),
+    password: new FormControl("", [Validators.required, validatePasswordNum, Validators.minLength(8), Validators.maxLength(64), validateSimilarity, validatePasswordUppercase]),
     passwordReenter: new FormControl("", [Validators.required, validateSimilarity]),
     phoneNum: new FormControl("", [validatePhoneNum, validatePlus, Validators.minLength(10), Validators.maxLength(16)]),
     username: new FormControl("", [Validators.minLength(6), Validators.maxLength(64), Validators.required]),
