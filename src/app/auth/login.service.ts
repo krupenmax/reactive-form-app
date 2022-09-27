@@ -6,7 +6,7 @@ import { User } from "../auth/user";
 import { UserInfo } from "../user-info";
 
 @Injectable({
-  providedIn: "root",
+  providedIn: "any",
 })
 export class LoginService {
   public isLogged: boolean = false;

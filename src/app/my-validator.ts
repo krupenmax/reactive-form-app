@@ -48,6 +48,5 @@ export function validatePhoneNum(control: AbstractControl) {
 export const validateSimilarity: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const password = control.get("password");
   const passwordReenter = control.get("passwordReenter");
-  console.log(password);
   return password?.value === passwordReenter?.value ? null : { invalidSimilarity: true };
 };

@@ -36,6 +36,7 @@ export class AuthComponent implements OnDestroy{
         next: (data) => {
           this.loginService.isLogged = true;
           this.dataService.userInfo = {
+            birthdate: data.birthdate,
             email: data.email,
             firstName: data.firstName,
             gender: data.gender,

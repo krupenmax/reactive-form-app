@@ -1,0 +1,15 @@
+<table class="table">
+    <tr>
+        <td>ID</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Username</td>
+        <td>Password</td>
+        <td>Birth Date</td>
+    </tr>
+    <div *ngIf="users | async as userList">
+        <tr>
+            <td>{{userList.firstName}}</td>
+        </tr>
+    </div>
+</table>

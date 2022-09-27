@@ -1,0 +1,22 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 3px black;
+    box-shadow: 0px 0px 15px #000;
+    padding: 50px;
+    border-radius: 50px;
+}
+
+.table td {
+    flex-basis: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
