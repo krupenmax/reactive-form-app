@@ -7,5 +7,6 @@ export type UserInfo = {
   gender: string;
   image: string;
   token: string;
-  birthdate: string;
+  birthDate: string;
+  password: string;
 };

@@ -1,15 +1,20 @@
 <table class="table">
-    <tr>
+    <div *ngIf="users | async as userList">
+    <tr class="header">
         <td>ID</td>
         <td>First Name</td>
         <td>Last Name</td>
-        <td>Username</td>
+        <td>Username</td>   
         <td>Password</td>
         <td>Birth Date</td>
     </tr>
-    <div *ngIf="users | async as userList">
-        <tr>
-            <td>{{userList.firstName}}</td>
+        <tr *ngFor="let user of userList.users" class="user">
+            <td>{{user.id}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.password}}</td>
+            <td>{{user.birthDate}}</td>
         </tr>
     </div>
 </table>
