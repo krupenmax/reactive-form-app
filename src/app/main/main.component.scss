@@ -3,17 +3,10 @@
     justify-content: center;
     align-items: center;
     --gradient-shadow: linear-gradient(
-		45deg,
-		#fb0094,
-		#0000ff,
-		#feafea,
-		#ffff00,
-		#ff0000,
-		#fb0094,
-		#0000ff,
-		#00ff00,
-		#ffff00,
-		#ff0000
+		90deg, rgb(54, 50, 129) 0%, rgba(86,68,189,1) 8%,
+        rgba(41,85,136,1) 15%, rgba(31,105,89,1) 25%, rgba(33,122,67,1) 33%,
+        rgba(59,135,37,1) 44%, rgba(69,138,31,1) 54%, rgba(140,136,36,1) 68%,
+        rgba(157,117,41,1) 79%, rgba(185,83,50,1) 87%, rgba(177,49,49,1) 100%
 	);
 }
 
