@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { registerInfo } from "./register-info";
 
@@ -9,7 +8,7 @@ import { registerInfo } from "./register-info";
 })
 export class RegisterService {
   public isLogged: boolean = false;
-  public constructor(private http: HttpClient, private router: Router) {
+  public constructor(private http: HttpClient) {
   }
 
   public register(body: registerInfo): Observable<registerInfo> {

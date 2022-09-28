@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -49,7 +49,7 @@ export class RegistrationComponent {
             phoneNum: data.phoneNum,
             username: data.username,
           };
-          this.router.navigateByUrl("main");
+          this.router.navigateByUrl("");
         },
       });
     }

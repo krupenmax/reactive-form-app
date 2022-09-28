@@ -6,7 +6,7 @@ import { LoginService } from "./auth/login.service";
 const routes: Routes = [
 
   { loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule), path: "" },
-  { loadChildren: () => import("./main/main.module").then(m => m.MainModule), path: "main" },
+  { canActivate: [LoginGuard], loadChildren: () => import("./main/main.module").then(m => m.MainModule), path: "main" },
 ];
 
 @NgModule({

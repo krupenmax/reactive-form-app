@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
-import { FormControl, NgModel } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
 import { UserInfo } from "src/app/user-info";
 import { DataService } from "../auth/data.service";
@@ -22,7 +22,7 @@ export class MainComponent implements OnInit {
   public userInfo?: UserInfo = this.dataService.userInfo;
   public registerUser?: registerInfo = this.dataService.registerUser;
   public selectControl: FormControl = new FormControl("");
-  public users?: Observable<UsersInfo> = this.http.get<UsersInfo>("api/users?limit=" + this.userNum +"&skip=" + this.currentPage * this.userNum);
+  public users?: Observable<UsersInfo> = this.http.get<UsersInfo>("api/auth/users?limit=" + this.userNum +"&skip=" + this.currentPage * this.userNum, { withCredentials: true });
   public constructor(private dataService: DataService, private http: HttpClient, private cdr: ChangeDetectorRef) {
   }
 
@@ -44,7 +44,7 @@ export class MainComponent implements OnInit {
   public ngOnInit() {
     this.selectControl.valueChanges.subscribe(data => {
       this.userNum = data;
-      this.users = this.http.get<UsersInfo>("api/users?limit=" + this.userNum +"&skip=0");
+      this.users = this.http.get<UsersInfo>("api/users?limit=" + this.userNum +"&skip=0", { withCredentials: true });
       this.pageArray = new Array(100 / this.userNum);
       this.currentPage = 0;
     });

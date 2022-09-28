@@ -10,7 +10,7 @@ import { UserInfo } from "../user-info";
 })
 export class LoginService {
   public isLogged: boolean = false;
-  public constructor(private http: HttpClient, private router: Router) {
+  public constructor(private http: HttpClient) {
   }
 
   public login(username: string | null | undefined, password: string | null | undefined): Observable<UserInfo> {
