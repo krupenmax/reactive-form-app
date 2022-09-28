@@ -9,6 +9,6 @@ import { registerInfo } from "./register-info";
 export class DataService {
   public userInfo?: UserInfo;
   public registerUser?: registerInfo;
-
+  public id: number = 0;
   public constructor() { }
 }

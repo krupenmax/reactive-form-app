@@ -1,20 +1,77 @@
 <table class="table">
-    <div *ngIf="users | async as userList">
-    <tr class="header">
-        <td>ID</td>
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Username</td>   
-        <td>Password</td>
-        <td>Birth Date</td>
-    </tr>
-        <tr *ngFor="let user of userList.users" class="user">
-            <td>{{user.id}}</td>
-            <td>{{user.firstName}}</td>
-            <td>{{user.lastName}}</td>
-            <td>{{user.username}}</td>
-            <td>{{user.password}}</td>
-            <td>{{user.birthDate}}</td>
+    <div *ngIf="users | async as userList" class="table-div">
+        <tr class="header">
+            <td>ID</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Username</td>   
+            <td>Password</td>
+            <td>Birth Date</td>
         </tr>
+        <tr *ngFor="let user of userList.users; index as i" class="user" (click)="popUp(i)">
+                <td>{{user.id}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.password}}</td>
+                <td>{{user.birthDate}}</td>
+        </tr>
+        <div *ngIf="isPopUp" class="pop-up-table">
+            <div class="cancel-div" (click)="cancel()">✘</div>
+            <table>
+                <tr>
+                    <td><img src="{{userList.users[getIndex()].image}}"></td>
+                </tr>
+                <tr>
+                    <td>ID:</td>
+                    <td>{{userList.users[getIndex()].id}}</td>
+                </tr>
+                <tr>
+                    <td>First Name:</td>
+                    <td>{{userList.users[getIndex()].firstName}}</td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>{{userList.users[getIndex()].lastName}}</td>
+                </tr>
+                <tr>
+                    <td>Username:</td>
+                    <td>{{userList.users[getIndex()].username}}</td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>{{userList.users[getIndex()].password}}</td>
+                </tr>
+                <tr>
+                    <td>Birth Date:</td>
+                    <td>{{userList.users[getIndex()].birthDate}}</td>
+                </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td>{{userList.users[getIndex()].age}}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{userList.users[getIndex()].email}}</td>
+                </tr>
+                <tr>
+                    <td>Weight:</td>
+                    <td>{{userList.users[getIndex()].weight}}</td>
+                </tr>
+                <tr>
+                    <td>Height:</td>
+                    <td>{{userList.users[getIndex()].height}}</td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="paging">
+            <a *ngFor="let i of pageArray; index as j" (click)="changePage(j)">{{j + 1}}</a>
+            <select class="select-page" [formControl]="selectControl" [value]="userNum">
+                <option [value]=10>10</option>
+                <option [value]=20>20</option>
+                <option [value]=50>50</option>
+            </select>
+        </div>
     </div>
 </table>

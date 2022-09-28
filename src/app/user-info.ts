@@ -9,4 +9,7 @@ export type UserInfo = {
   token: string;
   birthDate: string;
   password: string;
+  age: string;
+  weight: string;
+  height: string;
 };
