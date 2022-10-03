@@ -1,5 +1,4 @@
 <div class="table" *ngIf="users | async as userList">
-
     <table>
         <thead>
             <tr>
@@ -18,7 +17,7 @@
                 <td>{{user.lastName}}</td>
                 <td>{{user.username}}</td>
                 <td>{{user.password}}</td>
-                <td>{{user.birthDate}}</td>
+                <td>{{user.birthDate | date}}</td>
             </tr>
         </tbody>
     </table>
@@ -33,52 +32,5 @@
             </select>
         </div>        
     </div>
-
-    <div *ngIf="isPopUp" class="pop-up-table">             
-        <div class="cancel-div" (click)="cancel()">✘</div>
-        <img src="{{userList.users[getIndex()].image}}">
-        <table>
-            <tr>
-                <td class="property-td">ID:</td>
-                <td class="value-td">{{userList.users[getIndex()].id}}</td>
-            </tr>
-            <tr>
-                <td class="property-td">First Name:</td>
-                <td class="value-td">{{userList.users[getIndex()].firstName}}</td>
-            </tr>
-            <tr>
-                <td class="property-td">Last Name:</td>
-                <td class="value-td">{{userList.users[getIndex()].lastName}}</td>
-            </tr>
-            <tr>
-                <td class="property-td">Username:</td>
-                <td class="value-td">{{userList.users[getIndex()].username}}</td>
-            </tr>
-            <tr>
-                <td class="property-td">Password:</td>
-                <td class="value-td">{{userList.users[getIndex()].password}}</td>
-            </tr>
-            <tr>
-                <td class="property-td">Birth Date:</td>
-                <td class="value-td">{{userList.users[getIndex()].birthDate}}</td>
-            </tr>
-            <tr>
-                <td class="property-td">Age:</td>
-                <td class="value-td">{{userList.users[getIndex()].age}}</td>
-            </tr>
-            <tr>
-                <td class="property-td">Email:</td>
-                <td class="value-td">{{userList.users[getIndex()].email}}</td>
-            </tr>
-            <tr>
-                <td class="property-td">Weight:</td>
-                <td class="value-td">{{userList.users[getIndex()].weight}}</td>
-            </tr>
-            <tr>
-                <td class="property-td">Height:</td>
-                <td class="value-td">{{userList.users[getIndex()].height}}</td>
-            </tr>
-        </table>
-    </div>
-
+    <app-pop-up-window *ngIf="isPopUp" (cancelEvent)="cancel()"></app-pop-up-window>
 </div>

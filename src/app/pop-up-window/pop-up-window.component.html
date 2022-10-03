@@ -1,0 +1,46 @@
+<div *ngIf="user | async as userList" class="pop-up-table">             
+    <div class="cancel-div" (click)="cancel()">✘</div>
+    <img src="{{userList.image}}">
+    <table>
+        <tr>
+            <td class="property-td">ID:</td>
+            <td class="value-td">{{userList.id}}</td>
+        </tr>
+        <tr>
+            <td class="property-td">First Name:</td>
+            <td class="value-td">{{userList.firstName}}</td>
+        </tr>
+        <tr>
+            <td class="property-td">Last Name:</td>
+            <td class="value-td">{{userList.lastName}}</td>
+        </tr>
+        <tr>
+            <td class="property-td">Username:</td>
+            <td class="value-td">{{userList.username}}</td>
+        </tr>
+        <tr>
+            <td class="property-td">Password:</td>
+            <td class="value-td">{{userList.password}}</td>
+        </tr>
+        <tr>
+            <td class="property-td">Birth Date:</td>
+            <td class="value-td">{{userList.birthDate | date}}</td>
+        </tr>
+        <tr>
+            <td class="property-td">Age:</td>
+            <td class="value-td">{{userList.age}}</td>
+        </tr>
+        <tr>
+            <td class="property-td">Email:</td>
+            <td class="value-td">{{userList.email}}</td>
+        </tr>
+        <tr>
+            <td class="property-td">Weight:</td>
+            <td class="value-td">{{userList.weight}}</td>
+        </tr>
+        <tr>
+            <td class="property-td">Height:</td>
+            <td class="value-td">{{userList.height}}</td>
+        </tr>
+    </table>
+</div>

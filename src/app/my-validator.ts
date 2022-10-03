@@ -24,6 +24,7 @@ export function validatePasswordUppercase(control: AbstractControl) {
 }
 
 export function validatePlus(control: AbstractControl) {
+  console.log(control.errors);
   if (control.value[0] === "+" || control.value === "") {
     return null;
   }
