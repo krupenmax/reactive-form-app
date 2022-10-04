@@ -15,8 +15,8 @@ import { LoginService } from "./login.service";
 
 export class AuthComponent implements OnDestroy{
   public authForm = new FormGroup({
-    login: new FormControl("", Validators.required),
-    password: new FormControl("", Validators.required),
+    login: new FormControl("kminchelle", Validators.required),
+    password: new FormControl("0lelplR", Validators.required),
   });
   public unsubscribe$: Subject<void> = new Subject();
 

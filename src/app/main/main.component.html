@@ -1,4 +1,4 @@
-<div class="table" *ngIf="users | async as userList">
+<div class="table">
     <table>
         <thead>
             <tr>
@@ -10,8 +10,8 @@
                 <td>Birth Date</td>
             </tr>  
         </thead>
-        <tbody> 
-            <tr *ngFor="let user of userList.users; index as i" (click)="popUp(i)">
+        <tbody *ngIf="users"> 
+            <tr *ngFor="let user of users.users; index as i" (click)="popUp(i)">
                 <td>{{user.id}}</td>
                 <td>{{user.firstName}}</td>
                 <td>{{user.lastName}}</td>
