@@ -23,7 +23,14 @@
     </table>
     
     <div class="paging">
-        <a *ngFor="let i of pageArray; index as j" (click)="changePage(j)">{{j + 1}}</a>     
+        <a *ngFor="let i of pageArray; index as j" (click)="changePage(j)">
+            <div class="selected-div-page" *ngIf="isSelectedPage(j)">
+                {{j + 1}}
+            </div>
+            <div *ngIf="!isSelectedPage(j)">
+                {{j + 1}}
+            </div>
+        </a>     
         <div class="select">
             <select class="select-page" [formControl]="selectControl">
                 <option [value]="10">10</option>

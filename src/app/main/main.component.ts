@@ -43,6 +43,10 @@ export class MainComponent implements OnInit, OnDestroy {
     this.dataService.popUpUser = this.httpService.getUser(index);
   }
 
+  public isSelectedPage(index: number): boolean {
+    return index === this.currentPage;
+  }
+
   public cancel(): void {
     this.isPopUp = false;
     this.cdr.detectChanges();
